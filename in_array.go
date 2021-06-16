@@ -70,9 +70,9 @@ func EasyLocalDb(filename string, data *map[string]interface{}, lock *sync.RWMut
 		for {
 			lastB := []byte{}
 			time.Sleep(saveInterval)
-			lock.Lock()
+			lock.RLock()
 			b, err := json.Marshal(data)
-			lock.Unlock()
+			lock.RUnlock()
 			if err != nil {
 				log.Println(errors.Wrapf(err, "go routine err: cannot json decode, data: %s", string(b)))
 				return
