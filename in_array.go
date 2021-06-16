@@ -47,7 +47,7 @@ func GetIpFromUrl(proxy string) string {
 	}
 	return u.Hostname()
 }
-func EasyLocalDb(filename string, data *map[string]interface{}, lock sync.RWMutex, saveInterval time.Duration) error {
+func EasyLocalDb(filename string, data *map[string]interface{}, lock *sync.RWMutex, saveInterval time.Duration) error {
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
 		err = errors.Wrapf(err, "read file err, path: %s, try to create...", filename)
