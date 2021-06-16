@@ -61,10 +61,11 @@ func EasyLocalDb(filename string, data *map[string]interface{}, lock *sync.RWMut
 			err = errors.Wrapf(err, "create file failed: %s", errWrite)
 			return err
 		}
-	}
-	err = json.Unmarshal(b, data)
-	if err != nil {
-		return errors.Wrapf(err, "cannot json decode, data: %s", string(b))
+	} else {
+		err = json.Unmarshal(b, data)
+		if err != nil {
+			return errors.Wrapf(err, "cannot json decode, data: %s", string(b))
+		}
 	}
 	go func() {
 		for {
